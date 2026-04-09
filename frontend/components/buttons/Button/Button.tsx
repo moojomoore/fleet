@@ -31,6 +31,7 @@ export interface IButtonProps {
   title?: string;
   /** Default: "default" */
   variant?: ButtonVariant;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   onClick?:
     | ((value?: any) => void)
     | ((
@@ -38,6 +39,7 @@ export interface IButtonProps {
           | React.MouseEvent<HTMLButtonElement>
           | React.KeyboardEvent<HTMLButtonElement>
       ) => void);
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   isLoading?: boolean;
   customOnKeyDown?: (e: React.KeyboardEvent) => void;
   /** Required for buttons that contain SVG icons using`stroke` instead of`fill` for proper hover styling */
@@ -109,6 +111,7 @@ class Button extends React.Component<IButtonProps, IButtonState> {
     }
 
     if (onClick) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick(evt as any);
     }
   };

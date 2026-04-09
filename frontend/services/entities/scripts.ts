@@ -102,7 +102,7 @@ export interface IScriptBatchSupportedFilters {
   query?: string;
   label_id?: number;
   team_id?: number;
-  status: any; // TODO - improve upstream typing
+  status: string | undefined; // TODO - improve upstream typing
 }
 interface IRunScriptBatchRequestBase {
   script_id: number;

@@ -109,7 +109,11 @@ const TeamsDropdown = ({
   });
 
   const CustomDropdownIndicator = (
-    props: DropdownIndicatorProps<any, false, any>
+    props: DropdownIndicatorProps<
+      INumberDropdownOption,
+      false,
+      GroupBase<INumberDropdownOption>
+    >
   ) => {
     const { isFocused, selectProps } = props;
     const color =

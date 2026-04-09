@@ -30,7 +30,7 @@ export const hasStatusKey = (value: unknown): value is { status: number } => {
     typeof value === "object" &&
     value !== null &&
     "status" in value &&
-    typeof (value as any).status === "number"
+    typeof (value as { status: unknown }).status === "number"
   );
 };
 

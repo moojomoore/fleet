@@ -274,7 +274,7 @@ export interface ILoggingConfig {
   };
   audit?: {
     plugin: string;
-    config: any;
+    config: unknown;
   };
 }
 

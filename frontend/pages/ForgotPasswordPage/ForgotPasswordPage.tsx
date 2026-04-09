@@ -25,7 +25,7 @@ const ForgotPasswordPage = ({ router }: IForgotPasswordPage) => {
     setErrors({});
   }, []);
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: { email: string }) => {
     setIsLoading(true);
     try {
       await usersAPI.forgotPassword(formData);

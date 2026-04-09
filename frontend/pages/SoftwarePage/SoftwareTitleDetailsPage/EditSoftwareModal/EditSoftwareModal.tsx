@@ -247,7 +247,7 @@ const EditSoftwareModal = ({
     setIsUpdatingSoftware(false);
   };
 
-  const isOnlySelfServiceUpdated = (updates: Record<string, any>) => {
+  const isOnlySelfServiceUpdated = (updates: Record<string, unknown>) => {
     return Object.keys(updates).length === 1 && "selfService" in updates;
   };
 

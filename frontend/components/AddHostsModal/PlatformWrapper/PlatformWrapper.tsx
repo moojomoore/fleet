@@ -60,9 +60,9 @@ const platformSubNav: IPlatformSubNav[] = [
 interface IPlatformWrapperProps {
   enrollSecret: string;
   onCancel: () => void;
-  certificate: any;
+  certificate: string | undefined;
   isFetchingCertificate: boolean;
-  fetchCertificateError: any;
+  fetchCertificateError: Error | null;
   config: IConfig | null;
 }
 
@@ -419,7 +419,7 @@ const PlatformWrapper = ({
                   <br />
                   {fetchCertificateError ? (
                     <span className={`${baseClass}__error`}>
-                      {fetchCertificateError}
+                      {fetchCertificateError?.message}
                     </span>
                   ) : (
                     <Button variant="inverse" onClick={onDownloadFlagfile}>

@@ -40,7 +40,7 @@ const CreateTeamModal = ({
   );
 
   const onFormSubmit = useCallback(
-    (evt: any) => {
+    (evt: React.FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
       onSubmit({
         name: name.trim(),
