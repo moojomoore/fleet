@@ -43,7 +43,6 @@ const AccountSidePanel = ({
         setVersionData(data);
       } catch (response) {
         console.error(response);
-        return false;
       }
     };
 

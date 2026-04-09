@@ -373,10 +373,11 @@ const EditQueryForm = ({
     evt.preventDefault();
 
     if (isExistingQuery && !lastEditedQueryName) {
-      return setErrors({
+      setErrors({
         ...errors,
         name: "Report name must be present",
       });
+      return;
     }
 
     const { valid, errors: newErrs } = validateQuerySQL(lastEditedQueryBody);

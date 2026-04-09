@@ -36,7 +36,6 @@ const ForgotPasswordPage = ({ router }: IForgotPasswordPage) => {
       const errorObject = formatErrorResponse(response);
       setEmail("");
       setErrors(errorObject);
-      return false;
     } finally {
       setIsLoading(false);
     }

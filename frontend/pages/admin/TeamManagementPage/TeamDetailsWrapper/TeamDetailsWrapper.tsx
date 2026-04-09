@@ -293,7 +293,7 @@ const TeamDetailsWrapper = ({
 
   const onDeleteSubmit = useCallback(async () => {
     if (!teamIdForApi) {
-      return false;
+      return;
     }
 
     setIsUpdatingTeams(true);
