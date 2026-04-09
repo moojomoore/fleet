@@ -374,14 +374,11 @@ const SoftwareInstallerCard = ({
       {showViewYamlModal && isCustomPackage && (
         <ViewYamlModal
           softwareTitleName={softwareTitleName}
-          softwareTitleId={softwareId}
-          teamId={teamId}
           iconUrl={iconUrl}
           displayName={displayName}
           softwarePackage={softwareInstaller as ISoftwarePackage}
           onExit={onToggleViewYaml}
           isScriptPackage={isScriptPackage}
-          isIosOrIpadosApp={isIosOrIpadosApp}
         />
       )}
     </Card>

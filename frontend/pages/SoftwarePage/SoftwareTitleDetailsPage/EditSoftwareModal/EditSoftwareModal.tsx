@@ -51,7 +51,6 @@ interface IEditSoftwareModalProps {
   openViewYamlModal: () => void;
   isFleetMaintainedApp?: boolean;
   isIosOrIpadosApp?: boolean;
-  gitOpsModeEnabled?: boolean;
   name: string;
   displayName: string;
   source?: string;
