@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import classnames from "classnames";
 import FileSaver from "file-saver";
-import { get } from "lodash";
+
 import { PolicyContext } from "context/policy";
 
 import {
@@ -60,8 +60,6 @@ const PolicyResults = ({
 
   const { hosts: hostResponses, uiHostCounts, serverHostCounts, errors } =
     campaign || {};
-
-  const totalRowsCount = get(campaign, ["hosts_count", "successful"], 0);
 
   const [navTabIndex, setNavTabIndex] = useState(0);
   const [showQueryModal, setShowQueryModal] = useState(false);

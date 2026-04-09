@@ -117,8 +117,6 @@ const PolicyForm = ({
   const [isSaveNewPolicyModalOpen, setIsSaveNewPolicyModalOpen] = useState(
     false
   );
-  const [showQueryEditor, setShowQueryEditor] = useState(false);
-
   const [selectedTargetType, setSelectedTargetType] = useState("All hosts");
   const [selectedCustomTarget, setSelectedCustomTarget] = useState(
     "labelsIncludeAny"
@@ -166,13 +164,9 @@ const PolicyForm = ({
   const queryClient = useQueryClient();
 
   const {
-    currentUser,
     currentTeam,
     isGlobalObserver,
-    isGlobalAdmin,
-    isGlobalMaintainer,
     isTeamMaintainerOrTeamAdmin,
-    isObserverPlus,
     isTeamTechnician,
     isGlobalTechnician,
     isOnGlobalTeam,
@@ -633,7 +627,6 @@ const PolicyForm = ({
               currentAutomatedPolicies={currentAutomatedPolicies}
               onAddAutomation={onAddPatchAutomation}
               isAddingAutomation={isAddingAutomation}
-              gitOpsModeEnabled={!!gitOpsModeEnabled}
             />
           )}
           {isEditMode &&

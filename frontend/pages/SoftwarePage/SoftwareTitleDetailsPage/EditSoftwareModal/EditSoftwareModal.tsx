@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { InjectedRouter } from "react-router";
 import { useQuery } from "react-query";
 import classnames from "classnames";
 
@@ -49,7 +48,6 @@ interface IEditSoftwareModalProps {
   refetchSoftwareTitle: () => void;
   onExit: () => void;
   installerType: InstallerType;
-  router: InjectedRouter;
   openViewYamlModal: () => void;
   isFleetMaintainedApp?: boolean;
   isIosOrIpadosApp?: boolean;
@@ -67,7 +65,6 @@ const EditSoftwareModal = ({
   onExit,
   refetchSoftwareTitle,
   installerType,
-  router,
   openViewYamlModal,
   isFleetMaintainedApp = false,
   isIosOrIpadosApp = false,
