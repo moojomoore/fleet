@@ -165,7 +165,7 @@ const STATUS_CELL_VALUES: Record<DiskEncryptionStatus, IStatusCellValue> = {
       "osquery and retrieving the disk encryption key. This may take up to one hour.",
   },
   action_required: {
-    displayName: "Action required (pending)",
+    displayName: "Action required",
     statusName: "pendingPartial",
     value: "action_required",
     tooltip: (
@@ -176,7 +176,7 @@ const STATUS_CELL_VALUES: Record<DiskEncryptionStatus, IStatusCellValue> = {
     ),
   },
   enforcing: {
-    displayName: "Enforcing (pending)",
+    displayName: "Enforcing",
     statusName: "pendingPartial",
     value: "enforcing",
     tooltip:
@@ -188,7 +188,7 @@ const STATUS_CELL_VALUES: Record<DiskEncryptionStatus, IStatusCellValue> = {
     value: "failed",
   },
   removing_enforcement: {
-    displayName: "Removing enforcement (pending)",
+    displayName: "Removing enforcement",
     statusName: "pendingPartial",
     value: "removing_enforcement",
     tooltip:
