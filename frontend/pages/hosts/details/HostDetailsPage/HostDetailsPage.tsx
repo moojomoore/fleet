@@ -852,7 +852,7 @@ const HostDetailsPage = ({
         default: // do nothing
       }
     },
-    [host?.display_name]
+    [host?.display_name, host?.platform]
   );
 
   const onCancelActivity = (activity: IHostUpcomingActivity) => {
@@ -1517,7 +1517,6 @@ const HostDetailsPage = ({
                   isLoading={isLoadingHost}
                   togglePolicyDetailsModal={togglePolicyDetailsModal}
                   hostPlatform={host.platform}
-                  router={router}
                   currentTeamId={currentTeam?.id}
                 />
               </TabPanel>

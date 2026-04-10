@@ -119,7 +119,7 @@ const InstallSoftware = ({
         })
       );
     },
-    [router]
+    [router, currentTeamId]
   );
 
   if (!isValidPlatform) {

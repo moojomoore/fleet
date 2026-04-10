@@ -265,7 +265,20 @@ const PolicyForm = ({
         })
       );
     }
-  }, [policyIdForEdit, isTeamMaintainerOrTeamAdmin, isStoredPolicyLoading]);
+  }, [
+    isEditMode,
+    isGlobalObserver,
+    isGlobalTechnician,
+    isOnGlobalTeam,
+    isStoredPolicyLoading,
+    isTeamObserver,
+    isTeamTechnician,
+    policyIdForEdit,
+    isTeamMaintainerOrTeamAdmin,
+    router,
+    storedPolicy?.team_id,
+    teamIdForApi,
+  ]);
 
   useEffect(() => {
     setSelectedTargetType(
@@ -295,7 +308,7 @@ const PolicyForm = ({
     if (isNewTemplatePolicy) {
       setCompatiblePlatforms(lastEditedQueryBody);
     }
-  }, []);
+  }, [isNewTemplatePolicy, lastEditedQueryBody, setCompatiblePlatforms]);
 
   useEffect(() => {
     debounceSQL(lastEditedQueryBody);
@@ -306,7 +319,14 @@ const PolicyForm = ({
       return;
     }
     setCompatiblePlatforms(lastEditedQueryBody);
-  }, [lastEditedQueryBody, lastEditedQueryId]);
+  }, [
+    debounceSQL,
+    isNewTemplatePolicy,
+    lastEditedQueryBody,
+    lastEditedQueryId,
+    policyIdForEdit,
+    setCompatiblePlatforms,
+  ]);
 
   const onLoad = (editor: Ace.Editor) => {
     editor.setOptions({

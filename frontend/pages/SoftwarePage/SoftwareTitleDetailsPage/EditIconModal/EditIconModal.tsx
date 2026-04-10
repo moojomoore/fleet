@@ -226,7 +226,7 @@ const EditIconModal = ({
     });
 
   // Reset state to fallback/default icon when a current or new custom icon is removed
-  const resetIconState = () => {
+  const resetIconState = useCallback(() => {
     // Default to VPP icon if available, otherwise fall back to default icon
     const defaultPreviewUrl =
       previewInfo.currentIconUrl &&
@@ -241,7 +241,7 @@ const EditIconModal = ({
       fileDetails: null,
       status: "fallback",
     });
-  };
+  }, [previewInfo.currentIconUrl]);
 
   const { data: customIconData, isError: isCustomIconError } = useQuery(
     ["softwareIcon", softwareId, teamIdForApi, iconUploadedAt],
@@ -388,6 +388,7 @@ const EditIconModal = ({
     previewInfo.currentIconUrl,
     originalIsVpp,
     setCurrentApiCustomIcon,
+    resetIconState,
   ]);
 
   const fileDetails =

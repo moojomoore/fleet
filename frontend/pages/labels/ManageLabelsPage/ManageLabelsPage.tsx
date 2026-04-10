@@ -118,7 +118,15 @@ const ManageLabelsPage = ({ router }: IManageLabelsPageProps): JSX.Element => {
         repoURL={repoURL}
       />
     );
-  }, [currentUser, error, isLoading, labels, onClickAction]);
+  }, [
+    currentUser,
+    error,
+    isLoading,
+    labels,
+    labelsGitOpsManaged,
+    onClickAction,
+    repoURL,
+  ]);
 
   return (
     <MainContent className={baseClass}>

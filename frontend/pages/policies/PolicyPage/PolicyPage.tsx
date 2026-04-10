@@ -134,7 +134,7 @@ const PolicyPage = ({
     if (lastEditedQueryBody === "") {
       setLastEditedQueryBody(DEFAULT_POLICY.query);
     }
-  }, []);
+  }, [lastEditedQueryBody, setLastEditedQueryBody]);
 
   useEffect(() => {
     // cleanup when component unmounts
@@ -142,7 +142,7 @@ const PolicyPage = ({
       setLastEditedQueryCritical(false);
       setLastEditedQueryPlatform(null);
     };
-  }, []);
+  }, [setLastEditedQueryCritical, setLastEditedQueryPlatform]);
 
   const [step, setStep] = useState(
     location.hash === "#targets" ? LIVE_POLICY_STEPS[2] : LIVE_POLICY_STEPS[1]

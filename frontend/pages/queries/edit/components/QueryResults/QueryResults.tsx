@@ -105,7 +105,7 @@ const QueryResults = ({
         setResultsColumnConfigs(newResultsColumnConfigs);
       }
     }
-  }, [queryResults, lastEditedQueryBody]); // Cannot use tableHeaders as it will cause infinite loop with setTableHeaders
+  }, [queryResults, lastEditedQueryBody, resultsColumnConfigs]);
 
   useEffect(() => {
     if (errorColumnConfigs?.length === 0 && !!errors?.length) {
@@ -120,7 +120,7 @@ const QueryResults = ({
         }
       }
     }
-  }, [errors]); // Cannot use errorTableHeaders as it will cause infinite loop with setErrorTableHeaders
+  }, [errors, errorColumnConfigs, resultsColumnConfigs]);
 
   const onExportQueryResults = (evt: React.MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
