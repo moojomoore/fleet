@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useEffect, useContext, useState } from "react";
 import { InjectedRouter } from "react-router";
 import { useQuery } from "react-query";
 import { Tab, TabList, Tabs } from "react-tabs";
@@ -106,6 +106,7 @@ interface ISoftwarePageProps {
       self_service?: string;
       vulnerable?: string;
       exploit?: string;
+      manage_automations?: string;
       min_cvss_score?: string;
       max_cvss_score?: string;
       page?: string;
@@ -224,6 +225,27 @@ const SoftwarePage = ({ children, router, location }: ISoftwarePageProps) => {
 
   const isSoftwareConfigLoaded =
     !isFetchingSoftwareConfig && !softwareConfigError && !!softwareConfig;
+
+  // Open manage automations modal via query param (e.g. from command palette)
+  useEffect(() => {
+    if (
+      queryParams?.manage_automations === "1" &&
+      isSoftwareConfigLoaded &&
+      (isAllTeamsSelected || isPrimoMode)
+    ) {
+      setShowManageAutomationsModal(true);
+      // Clean up the query param from the URL
+      const { manage_automations, ...rest } = queryParams;
+      router.replace({ pathname: location.pathname, query: rest });
+    }
+  }, [
+    queryParams?.manage_automations,
+    isSoftwareConfigLoaded,
+    isAllTeamsSelected,
+    isPrimoMode,
+    location.pathname,
+    router,
+  ]);
 
   const toggleManageAutomationsModal = useCallback(() => {
     setShowManageAutomationsModal(!showManageAutomationsModal);
