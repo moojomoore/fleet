@@ -263,7 +263,14 @@ const CommandPalette = (): JSX.Element | null => {
       label: "Users",
       group: "Pages",
       path: paths.ADMIN_USERS,
-      keywords: ["accounts", "admins", "invite"],
+      keywords: [
+        "accounts",
+        "admins",
+        "invite",
+        "add user",
+        "edit user",
+        "delete user",
+      ],
     },
     {
       id: "my-account",
@@ -651,79 +658,6 @@ const CommandPalette = (): JSX.Element | null => {
                 path: paths.ADMIN_INTEGRATIONS_CONDITIONAL_ACCESS,
                 keywords: ["okta", "entra", "intune", "zero trust"],
               },
-              // Apple MDM — turn on or edit
-              ...(!isMacMdmEnabledAndConfigured
-                ? [
-                    {
-                      id: "turn-on-apple-mdm",
-                      label: "Turn on Apple (macOS, iOS, iPadOS) MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_APPLE,
-                      keywords: ["enable", "apns", "dep"],
-                    },
-                  ]
-                : [
-                    {
-                      id: "edit-apple-mdm",
-                      label: "Edit Apple (macOS, iOS, iPadOS) MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_APPLE,
-                      keywords: ["apns", "certificate", "renew"],
-                    },
-                    {
-                      id: "add-abm",
-                      label: "Add Apple Business Manager (ABM)",
-                      path: paths.ADMIN_INTEGRATIONS_APPLE_BUSINESS_MANAGER,
-                      keywords: ["dep", "automated enrollment", "apple"],
-                    },
-                    {
-                      id: "add-vpp",
-                      label: "Add Volume Purchasing Program (VPP)",
-                      path: paths.ADMIN_INTEGRATIONS_VPP,
-                      keywords: ["app store", "apple", "token"],
-                    },
-                  ]),
-              // Windows MDM — turn on or edit
-              ...(!isWindowsMdmEnabledAndConfigured
-                ? [
-                    {
-                      id: "turn-on-windows-mdm",
-                      label: "Turn on Windows MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_WINDOWS,
-                      keywords: ["enable", "microsoft"],
-                    },
-                  ]
-                : [
-                    {
-                      id: "edit-windows-mdm",
-                      label: "Edit Windows MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_WINDOWS,
-                      keywords: ["microsoft", "enrollment"],
-                    },
-                    {
-                      id: "windows-automatic-enrollment",
-                      label: "Windows automatic enrollment (Entra)",
-                      path:
-                        paths.ADMIN_INTEGRATIONS_AUTOMATIC_ENROLLMENT_WINDOWS,
-                      keywords: ["entra", "azure ad", "microsoft"],
-                    },
-                  ]),
-              // Android MDM — turn on or edit
-              ...(!isAndroidMdmEnabledAndConfigured
-                ? [
-                    {
-                      id: "turn-on-android-mdm",
-                      label: "Turn on Android MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_ANDROID,
-                      keywords: ["enable", "google", "enterprise"],
-                    },
-                  ]
-                : [
-                    {
-                      id: "edit-android-mdm",
-                      label: "Edit Android MDM",
-                      path: paths.ADMIN_INTEGRATIONS_MDM_ANDROID,
-                      keywords: ["google", "enterprise"],
-                    },
-                  ]),
             ],
           },
 
@@ -740,7 +674,14 @@ const CommandPalette = (): JSX.Element | null => {
             label: "Fleets",
             group: "Settings",
             path: paths.ADMIN_FLEETS,
-            keywords: ["teams", "groups"],
+            keywords: [
+              "teams",
+              "groups",
+              "add fleet",
+              "create fleet",
+              "edit fleet",
+              "delete fleet",
+            ],
           },
         ]
       : []),
@@ -846,6 +787,93 @@ const CommandPalette = (): JSX.Element | null => {
             path: paths.LOGOUT,
             keywords: ["logout", "log out", "sign out"],
           },
+        ]
+      : []),
+
+    // MDM actions — global admins only
+    ...(canAccessSettings
+      ? [
+          // Apple MDM — turn on or edit
+          ...(!isMacMdmEnabledAndConfigured
+            ? [
+                {
+                  id: "turn-on-apple-mdm",
+                  label: "Turn on Apple (macOS, iOS, iPadOS) MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_APPLE,
+                  keywords: ["enable", "apns", "dep"],
+                },
+              ]
+            : [
+                {
+                  id: "edit-apple-mdm",
+                  label: "Edit Apple (macOS, iOS, iPadOS) MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_APPLE,
+                  keywords: ["apns", "certificate", "renew"],
+                },
+                {
+                  id: "add-abm",
+                  label: "Add Apple Business (AB)",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_APPLE_BUSINESS_MANAGER,
+                  keywords: ["dep", "automated enrollment", "apple"],
+                },
+                {
+                  id: "add-vpp",
+                  label: "Add Volume Purchasing Program (VPP)",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_VPP,
+                  keywords: ["app store", "apple", "token"],
+                },
+              ]),
+          // Windows MDM — turn on or edit
+          ...(!isWindowsMdmEnabledAndConfigured
+            ? [
+                {
+                  id: "turn-on-windows-mdm",
+                  label: "Turn on Windows MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_WINDOWS,
+                  keywords: ["enable", "microsoft"],
+                },
+              ]
+            : [
+                {
+                  id: "edit-windows-mdm",
+                  label: "Edit Windows MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_WINDOWS,
+                  keywords: ["microsoft", "enrollment"],
+                },
+                {
+                  id: "windows-automatic-enrollment",
+                  label: "Windows automatic enrollment (Entra)",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_AUTOMATIC_ENROLLMENT_WINDOWS,
+                  keywords: ["entra", "azure ad", "microsoft"],
+                },
+              ]),
+          // Android MDM — turn on or edit
+          ...(!isAndroidMdmEnabledAndConfigured
+            ? [
+                {
+                  id: "turn-on-android-mdm",
+                  label: "Turn on Android MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_ANDROID,
+                  keywords: ["enable", "google", "enterprise"],
+                },
+              ]
+            : [
+                {
+                  id: "edit-android-mdm",
+                  label: "Edit Android MDM",
+                  group: "Actions",
+                  path: paths.ADMIN_INTEGRATIONS_MDM_ANDROID,
+                  keywords: ["google", "enterprise"],
+                },
+              ]),
         ]
       : []),
 
@@ -1187,8 +1215,7 @@ const CommandPalette = (): JSX.Element | null => {
       <div className={`${baseClass}__input-wrapper`}>
         <Icon
           name="search"
-          color="ui-fleet-black-50"
-          size="small"
+          color="ui-fleet-black-75"
           className={`${baseClass}__input-icon`}
         />
         <Command.Input
@@ -1196,8 +1223,8 @@ const CommandPalette = (): JSX.Element | null => {
           className={`${baseClass}__input`}
           placeholder={
             page === "switch-fleet"
-              ? "Search fleets..."
-              : "Search or jump to..."
+              ? "Search fleets"
+              : "Search pages or actions"
           }
           value={search}
           onValueChange={setSearch}

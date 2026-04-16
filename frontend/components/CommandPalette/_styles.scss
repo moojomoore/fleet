@@ -14,9 +14,9 @@
   // Radix Dialog content wrapper (the div[role="dialog"])
   &__content {
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 100000;
     width: 600px;
     max-width: 75vw;
@@ -97,6 +97,7 @@
     max-height: 320px;
     overflow-y: auto;
     padding: $pad-small;
+    border-radius: $border-radius $border-radius 0 0;
 
     &::-webkit-scrollbar {
       width: 6px;
