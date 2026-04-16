@@ -176,6 +176,18 @@ const CommandPalette = (): JSX.Element | null => {
     [availableTeams, setCurrentTeam]
   );
 
+  const toggleExpanded = useCallback((id: string) => {
+    setExpandedItems((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }, []);
+
   if (isNoAccess) {
     return null;
   }
@@ -472,7 +484,7 @@ const CommandPalette = (): JSX.Element | null => {
                 id: "settings-org-info",
                 label: "Organization info",
                 path: paths.ADMIN_ORGANIZATION_INFO,
-                keywords: ["name", "logo", "branding"],
+                keywords: ["name", "logo", "branding", "support url"],
               },
               {
                 id: "settings-org-webaddress",
@@ -490,7 +502,14 @@ const CommandPalette = (): JSX.Element | null => {
                 id: "settings-org-agents",
                 label: "Agent options",
                 path: paths.ADMIN_ORGANIZATION_AGENTS,
-                keywords: ["osquery", "fleetd", "orbit", "flags"],
+                keywords: [
+                  "osquery",
+                  "fleetd",
+                  "orbit",
+                  "flags",
+                  "global config",
+                  "command line flags",
+                ],
               },
               {
                 id: "settings-org-statistics",
@@ -502,13 +521,31 @@ const CommandPalette = (): JSX.Element | null => {
                 id: "settings-org-fleet-desktop",
                 label: "Fleet Desktop",
                 path: paths.ADMIN_ORGANIZATION_FLEET_DESKTOP,
-                keywords: ["tray icon", "transparency", "end user"],
+                keywords: [
+                  "tray icon",
+                  "transparency",
+                  "end user",
+                  "browser host",
+                  "custom proxy",
+                ],
               },
               {
                 id: "settings-org-advanced",
                 label: "Advanced options",
                 path: paths.ADMIN_ORGANIZATION_ADVANCED,
-                keywords: ["live report", "host expiry", "usage statistics"],
+                keywords: [
+                  "live report",
+                  "host expiry",
+                  "usage statistics",
+                  "sso user url",
+                  "sso",
+                  "apple mdm server url",
+                  "verify ssl certs",
+                  "starttls",
+                  "host expiry",
+                  "generative ai features",
+                  "hardware attestation",
+                ],
               },
             ],
           },
@@ -531,19 +568,32 @@ const CommandPalette = (): JSX.Element | null => {
                 id: "settings-int-mdm",
                 label: "MDM",
                 path: paths.ADMIN_INTEGRATIONS_MDM,
-                keywords: ["apple", "windows", "android", "device management"],
+                keywords: [
+                  "apple",
+                  "windows",
+                  "android",
+                  "device management",
+                  "apple business",
+                  "vpp",
+                  "entra",
+                ],
               },
               {
                 id: "settings-int-calendars",
                 label: "Calendars",
                 path: paths.ADMIN_INTEGRATIONS_CALENDARS,
-                keywords: ["google calendar", "service account", "events"],
+                keywords: [
+                  "google calendar api",
+                  "google workspace",
+                  "service account",
+                  "events",
+                ],
               },
               {
                 id: "settings-int-change-management",
                 label: "Change management",
                 path: paths.ADMIN_INTEGRATIONS_CHANGE_MANAGEMENT,
-                keywords: ["approval", "workflow", "gitops mode"],
+                keywords: ["workflow", "gitops mode"],
               },
               {
                 id: "settings-int-sso-fleet-users",
@@ -561,13 +611,27 @@ const CommandPalette = (): JSX.Element | null => {
                 id: "settings-int-certificate-authorities",
                 label: "Certificate authorities",
                 path: paths.ADMIN_INTEGRATIONS_CERTIFICATE_AUTHORITIES,
-                keywords: ["scep", "est", "digicert", "ndes", "smallstep"],
+                keywords: [
+                  "scep",
+                  "est",
+                  "digicert",
+                  "ndes",
+                  "smallstep",
+                  "scep",
+                ],
               },
               {
                 id: "add-certificate-authority",
                 label: "Add certificate authority",
                 path: paths.ADMIN_INTEGRATIONS_CERTIFICATE_AUTHORITIES,
-                keywords: ["scep", "est", "digicert", "ndes", "smallstep", "pki"],
+                keywords: [
+                  "scep",
+                  "est",
+                  "digicert",
+                  "ndes",
+                  "smallstep",
+                  "pki",
+                ],
               },
               {
                 id: "settings-int-identity-provider",
@@ -637,7 +701,8 @@ const CommandPalette = (): JSX.Element | null => {
                     {
                       id: "windows-automatic-enrollment",
                       label: "Windows automatic enrollment (Entra)",
-                      path: paths.ADMIN_INTEGRATIONS_AUTOMATIC_ENROLLMENT_WINDOWS,
+                      path:
+                        paths.ADMIN_INTEGRATIONS_AUTOMATIC_ENROLLMENT_WINDOWS,
                       keywords: ["entra", "azure ad", "microsoft"],
                     },
                   ]),
@@ -764,7 +829,9 @@ const CommandPalette = (): JSX.Element | null => {
           },
           {
             id: "toggle-dark-mode",
-            label: isDarkMode() ? "Switch to light mode" : "Switch to dark mode",
+            label: isDarkMode()
+              ? "Switch to light mode"
+              : "Switch to dark mode",
             group: "Actions",
             keywords: ["dark mode", "light mode", "theme", "toggle"],
             onAction: () => {
@@ -858,13 +925,23 @@ const CommandPalette = (): JSX.Element | null => {
                       id: "manage-policy-automations-calendar",
                       label: "Calendar events",
                       path: `${paths.MANAGE_POLICIES}?fleet_id=${currentTeam?.id}`,
-                      keywords: ["reserve time", "maintenance window", "google calendar"],
+                      keywords: [
+                        "reserve time",
+                        "maintenance window",
+                        "google calendar",
+                      ],
                     },
                     {
                       id: "manage-policy-automations-conditional-access",
                       label: "Conditional access",
                       path: `${paths.MANAGE_POLICIES}?fleet_id=${currentTeam?.id}`,
-                      keywords: ["sso", "okta", "entra", "intune", "zero trust"],
+                      keywords: [
+                        "sso",
+                        "okta",
+                        "entra",
+                        "intune",
+                        "zero trust",
+                      ],
                     },
                   ]
                 : []),
@@ -883,53 +960,40 @@ const CommandPalette = (): JSX.Element | null => {
     "Actions",
     "Automations",
   ];
-  const groupedItems: Record<string, ICommandItem[]> = {};
-  for (const item of items) {
-    if (!groupedItems[item.group]) {
-      groupedItems[item.group] = [];
-    }
-    groupedItems[item.group].push(item);
-  }
-
-  const toggleExpanded = useCallback((id: string) => {
-    setExpandedItems((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
+  const groupedItems = items.reduce<Record<string, ICommandItem[]>>(
+    (acc, item) => {
+      if (!acc[item.group]) {
+        acc[item.group] = [];
       }
-      return next;
-    });
-  }, []);
+      acc[item.group].push(item);
+      return acc;
+    },
+    {}
+  );
 
   const isSearching = search.length > 0;
   const searchLower = search.toLowerCase().trim();
 
   // Find exact match — an item or sub-item whose label exactly matches the search
-  const exactMatchIds = new Set<string>();
-  if (isSearching) {
-    for (const item of items) {
-      if (item.label.toLowerCase() === searchLower) {
-        exactMatchIds.add(item.id);
-      }
-      if (item.subItems) {
-        for (const sub of item.subItems) {
-          if (sub.label.toLowerCase() === searchLower) {
-            exactMatchIds.add(sub.id);
+  const exactMatchIds = isSearching
+    ? new Set(
+        items.reduce<string[]>((acc, item) => {
+          if (item.label.toLowerCase() === searchLower) {
+            acc.push(item.id);
           }
-        }
-      }
-    }
-  }
+          item.subItems
+            ?.filter((sub) => sub.label.toLowerCase() === searchLower)
+            .forEach((sub) => acc.push(sub.id));
+          return acc;
+        }, [])
+      )
+    : new Set<string>();
 
   const getItemValue = (item: ICommandItem) => {
     const parts = [item.label, ...(item.keywords ?? [])];
-    if (item.subItems) {
-      for (const sub of item.subItems) {
-        parts.push(sub.label, ...(sub.keywords ?? []));
-      }
-    }
+    item.subItems?.forEach((sub) => {
+      parts.push(sub.label, ...(sub.keywords ?? []));
+    });
     return parts.join(" ");
   };
 
@@ -941,7 +1005,9 @@ const CommandPalette = (): JSX.Element | null => {
       <React.Fragment key={item.id}>
         <Command.Item
           value={getItemValue(item)}
-          onSelect={() => (item.onAction ? item.onAction() : navigate(item.path!))}
+          onSelect={() =>
+            item.onAction ? item.onAction() : navigate(item.path!)
+          }
           className={`${baseClass}__item`}
         >
           <div className={`${baseClass}__item-left`}>
@@ -961,15 +1027,14 @@ const CommandPalette = (): JSX.Element | null => {
             )}
           </div>
           {item.teamName && (
-            <span className={`${baseClass}__item-team`}>
-              {item.teamName}
-            </span>
+            <span className={`${baseClass}__item-team`}>{item.teamName}</span>
           )}
         </Command.Item>
         {/* Render sub-items when expanded (browsing) or always when searching */}
         {hasSubItems &&
           (isExpanded || isSearching) &&
-          item.subItems!.map((sub) => (
+          item.subItems &&
+          item.subItems.map((sub) => (
             <Command.Item
               key={sub.id}
               value={`${sub.label} ${sub.keywords?.join(" ") ?? ""}`}
@@ -984,31 +1049,28 @@ const CommandPalette = (): JSX.Element | null => {
   };
 
   // Collect exact match items for the "Best match" section
-  const exactMatchItems: Array<{ item: ICommandItem; sub?: ICommandSubItem }> = [];
-  if (exactMatchIds.size > 0) {
-    for (const item of items) {
-      if (exactMatchIds.has(item.id)) {
-        exactMatchItems.push({ item });
-      }
-      if (item.subItems) {
-        for (const sub of item.subItems) {
-          if (exactMatchIds.has(sub.id)) {
-            exactMatchItems.push({ item, sub });
-          }
-        }
-      }
-    }
-  }
+  const exactMatchItems =
+    exactMatchIds.size > 0
+      ? items.reduce<Array<{ item: ICommandItem; sub?: ICommandSubItem }>>(
+          (acc, item) => {
+            if (exactMatchIds.has(item.id)) {
+              acc.push({ item });
+            }
+            item.subItems
+              ?.filter((sub) => exactMatchIds.has(sub.id))
+              .forEach((sub) => acc.push({ item, sub }));
+            return acc;
+          },
+          []
+        )
+      : [];
 
   const renderRootPage = () => (
     <>
       {/* Exact match at the top with a separator */}
       {exactMatchItems.length > 0 && (
         <>
-          <Command.Group
-            heading="Best match"
-            className={`${baseClass}__group`}
-          >
+          <Command.Group heading="Best match" className={`${baseClass}__group`}>
             {exactMatchItems.map(({ item, sub }) => {
               const target = sub || item;
               return (
