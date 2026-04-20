@@ -93,9 +93,7 @@ describe("CommandPalette", () => {
     await user.keyboard("{Escape}");
 
     await waitFor(() => {
-      expect(
-        screen.queryByPlaceholderText(/search/i)
-      ).not.toBeInTheDocument();
+      expect(screen.queryByPlaceholderText(/search/i)).not.toBeInTheDocument();
     });
   });
 
@@ -106,7 +104,8 @@ describe("CommandPalette", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByPlaceholderText(/search/i)
+        screen
+          .getByPlaceholderText(/search/i)
           .closest(".command-palette__input-wrapper")
           ?.querySelector(".command-palette__input-icon")
       ).toBeInTheDocument();
