@@ -48,6 +48,21 @@ const Secrets = () => {
     IListSecretsResponse
   >(["secrets", apiParams], () => secretsAPI.getSecrets(apiParams));
 
+  // Open add modal via query param (e.g. from command palette)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("add_variable") === "1") {
+      setShowAddModal(true);
+      params.delete("add_variable");
+      const qs = params.toString();
+      window.history.replaceState(
+        {},
+        "",
+        qs ? `${window.location.pathname}?${qs}` : window.location.pathname
+      );
+    }
+  }, []);
+
   const onClickAddSecret = () => {
     setShowAddModal(true);
   };
