@@ -1235,7 +1235,7 @@ const HostDetailsPage = ({
                       />
                     </>
                   }
-                  header="Software library is currently not supported on this host."
+                  header="Software library is currently not supported on this host"
                 />
               ) : (
                 <SoftwareLibraryCard
