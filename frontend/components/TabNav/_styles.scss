@@ -71,18 +71,6 @@
     &__tab-panel--selected {
       margin-top: $gap-page-component;
 
-      .no-results-message {
-        margin-top: $pad-xxlarge;
-        font-size: $small;
-        font-weight: $bold;
-
-        span {
-          margin-top: $pad-medium;
-          font-size: $x-small;
-          font-weight: $regular;
-          display: block;
-        }
-      }
     }
 
     .tab-text {
